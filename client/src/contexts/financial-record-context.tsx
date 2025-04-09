@@ -32,6 +32,8 @@ export const FinancialRecordProvider = ({
   const [records, setRecords] = useState<FinancialRecord[]>([]);
   const { isSignedIn, user } = useUser();
 
+  const BACKENDAPI = "https://shawlet-backend.onrender.com";
+
   // ✅ Always declare hook
   useEffect(() => {
     if (!isSignedIn) {
@@ -42,7 +44,7 @@ export const FinancialRecordProvider = ({
     const fetchRecords = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/financial-records/getAllByUserID/${user?.id}`
+          `${BACKENDAPI}/financial-records/getAllByUserID/${user?.id}`
         );
         const data = await res.json();
         setRecords(data);
@@ -62,7 +64,7 @@ export const FinancialRecordProvider = ({
     }
 
     try {
-      const response = await fetch("http://localhost:3000/financial-records", {
+      const response = await fetch(`${BACKENDAPI}/financial-records`, {
         method: "POST",
         body: JSON.stringify(record),
         headers: {
@@ -88,16 +90,13 @@ export const FinancialRecordProvider = ({
   };
 
   const updateRecord = async (id: string, newRecord: FinancialRecord) => {
-    const response = await fetch(
-      `http://localhost:3000/financial-records/${id}`,
-      {
-        method: "PUT",
-        body: JSON.stringify(newRecord),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`/financial-records/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(newRecord),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     try {
       if (response.ok) {
@@ -116,12 +115,9 @@ export const FinancialRecordProvider = ({
   };
 
   const deleteRecord = async (id: string) => {
-    const response = await fetch(
-      `http://localhost:3000/financial-records/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`${BACKENDAPI}/financial-records/${id}`, {
+      method: "DELETE",
+    });
 
     try {
       if (response.ok) {
