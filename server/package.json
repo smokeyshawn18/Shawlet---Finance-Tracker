@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./build/index.ts",
-    "build": "tsc -p .",
+    "build": "tsc -p tsconfig.json",
     "dev": "nodemon ./src/index.ts"
   },
   "keywords": [],
@@ -19,10 +19,10 @@
     "express": "^4.21.2",
     "mongoose": "^8.12.1",
     "ts-node": "^10.9.2",
-    "tsc": "^2.0.4",
-    "typescript": "^5.8.2"
+    "tsc": "^2.0.4"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.17"
+    "@types/cors": "^2.8.17",
+    "typescript": "^5.8.3"
   }
 }

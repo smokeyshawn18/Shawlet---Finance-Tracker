@@ -185,7 +185,7 @@ export const FinancialRecordList = () => {
                 dataKey="value"
                 label
               >
-                {chartData.map((entry, index) => (
+                {chartData.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index]} />
                 ))}
               </Pie>
