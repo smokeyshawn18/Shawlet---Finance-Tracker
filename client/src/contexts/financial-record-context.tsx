@@ -90,7 +90,7 @@ export const FinancialRecordProvider = ({
   };
 
   const updateRecord = async (id: string, newRecord: FinancialRecord) => {
-    const response = await fetch(`/financial-records/${id}`, {
+    const response = await fetch(`${BACKENDAPI}/financial-records/${id}`, {
       method: "PUT",
       body: JSON.stringify(newRecord),
       headers: {
